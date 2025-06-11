@@ -10,3 +10,18 @@ the command in the html file look like <div id="Ikshita"></div> also here div me
 a root which means a workspace in the page and make progress of the app. 
 root.render- root-is the contoller of ID Ikshita, render- it's work is to put our app into the Ikshita div. Basically root.render command is used to take the react app components 
 and display on the Ikshita div that we created earlier.
+
+
+APP.JS MAIN CODE UNDERSTANDING
+import { useState } from 'react'; - usestate is again a function from react it helps us to remember moves and whose turn it is in a game like tic tac toe. 
+function Square({ value, onSquareClick }) { - this command creates a component sqaure, this accepts informationpassed to it, onsquareclick is a functions that runs when it's clicked 
+and then what function to call and function like switch player ( X or O in the tic tac toe game ). 
+return (
+  <button className="square" onClick={onSquareClick}>
+    {value}
+  </button>
+); 
+under the tag classname="sqaure" we can style it with css change font, size, colour etc. onClick={onSquareClick} it basically call the function when clicked like on clicking 
+a square we might get an X or O in a game of tic tac toe. {value} - what value is stored again like X or O. Also here button is like a clickable button which will work and through
+value when clicked, the square has these buttons. 
+
