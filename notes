@@ -1,0 +1,12 @@
+INDEX.JS CODE UNDERSTANDING 
+index.js contains our main code, it's work is to take our react app (Tic tac toe) and show it inside a particular part of the web page 
+import { StrictMode } from "react"; - here strictmode is a tool which removes any bugs and unsafe practices in the project. It's basically importing strictmode from react. 
+import { createRoot } from "react-dom/client"; - createroot creates a place in html where we can display our react project (tic tac toe) and react-dom is a react library 
+which allows react to connect with the actual webpage.So createroot function is comes from the react dom library to help display the tictactoe on the webpage.
+import "./styles.css"; - CCS (cascading style sheets) it's work is to describe how our html webpage will look. This command helps us with the font, colour, size, etc of the webpage.
+import App from "./App";- There's another file app.js which contains the code of the app so this command brings in that "app" main component where our app starts from app.js. 
+const root = createRoot(document.getElementById("Ikshita")); - (document.getElementById("Ikshita")) this part search ups the html file of the app and finds out the ID named Ikshita
+the command in the html file look like <div id="Ikshita"></div> also here div means an empty box in our web page, createroot it's a react function from react dom library it creates
+a root which means a workspace in the page and make progress of the app. 
+root.render- root-is the contoller of ID Ikshita, render- it's work is to put our app into the Ikshita div. Basically root.render command is used to take the react app components 
+and display on the Ikshita div that we created earlier.
