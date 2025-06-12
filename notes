@@ -7,7 +7,7 @@ import "./styles.css"; - CCS (cascading style sheets) it's work is to describe h
 import App from "./App";- There's another file app.js which contains the code of the app so this command brings in that "app" main component where our app starts from app.js. 
 const root = createRoot(document.getElementById("Ikshita")); - (document.getElementById("Ikshita")) this part search ups the html file of the app and finds out the ID named Ikshita
 the command in the html file look like <div id="Ikshita"></div> also here div means an empty box in our web page, createroot it's a react function from react dom library it creates
-a root which means a workspace in the page and make progress of the app. 
+a root which means a workspace in the page and make progress of the app there.
 root.render- root-is the contoller of ID Ikshita, render- it's work is to put our app into the Ikshita div. Basically root.render command is used to take the react app components 
 and display on the Ikshita div that we created earlier.
 
@@ -24,4 +24,55 @@ return (
 under the tag classname="sqaure" we can style it with css change font, size, colour etc. onClick={onSquareClick} it basically call the function when clicked like on clicking 
 a square we might get an X or O in a game of tic tac toe. {value} - what value is stored again like X or O. Also here button is like a clickable button which will work and through
 value when clicked, the square has these buttons. 
-
+function Board({ xIsNext, squares, onPlay }) {
+  function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    onPlay(nextSquares);
+  }
+Board component- This component manage the game logic for tic tac toe game, board component contains xIsNext, squares and onPlay. xIsNext figures out if the next move is X's
+turn or O's turn when a sqaure (button) is clicked. Sqaure is an array with 9 elements (sqaures) and it determines the current state of one box if it's X,O or Null. 
+onPlay updates the game state when a sqaure is clicked. 
+(calculateWinner(squares) it checks if there's a winner or not, squares[i]) it checks whether the square which has been clicked is occupied or not and if either of it is true
+it return the value to invalid move. Now through slice we copy our 9 sqaure array so that we can make changes in that because react doesn't allow you to directly change in the
+original state and by change we mean for ex- we clicked the top left sqaure and it's current state was null and if it was X's chance so when clicked it's current state changes
+from null to X these changes take place in the sqaure array we copy through slice. The whole next part determines if it's X's turn or O's turn. Is xIsNext true it prints x on
+the sqaure which is clicked else it'll print O and then onplay updates the state of the game. 
+const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+const winner = calculateWinner(squares) this returns if there's a winner(X or O) yet or not (Null), how this works? first it checks the status if there's a winner if there is 
+then show a message winner(X or O) else show a message Next Player(X or O) and xIsNext is used to figure if it's X's turn or O's turn if the game is not finished. 
+return (
+    <>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      </div>
+    </>
+  );
+}
+this creates 9 box 3 in each row through board-row and each sqaure has it's own  handlclick  
